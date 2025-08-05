@@ -11,13 +11,13 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import dayjs from '@/lib/dayjs';
+import sleep from '@/lib/sleep';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import * as z from 'zod';
-import dayjs from '@/lib/dayjs';
-import { useRouter } from 'next/navigation';
-import sleep from '@/lib/sleep';
 
 const formSchema = z.object({
   email: z.email('Not invalid email'),

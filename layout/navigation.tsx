@@ -1,11 +1,15 @@
 'use client';
 
+import authApi from '@/app/api/auth';
 import userApi from '@/app/api/user';
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover';
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuShortcut,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import { User } from '@/types';
 import { useEffect, useState } from 'react';
 
@@ -33,18 +37,30 @@ export const Navigation = () => {
 
   const avatarName = userData?.firstName.substring(0, 1);
 
+  const onLogout = async () => {
+    return await authApi.logout();
+  };
+
   return (
-    <header className="sticky top-0 h-10 w-full">
-      <Popover>
-        <PopoverTrigger>
-          <div className="flex h-10 w-10 rounded-full bg-black">
-            <p className="mx-auto self-center text-2xl font-semibold text-white">
-              {avatarName}
-            </p>
-          </div>
-        </PopoverTrigger>
-        <PopoverContent>Place content for the popover here.</PopoverContent>
-      </Popover>
+    <header className="sticky top-0 flex h-10 w-full p-4">
+      <div className="ml-auto">
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <div className="flex h-8 w-8 rounded-full bg-black">
+              <p className="mx-auto self-center font-mono text-xl font-semibold text-white">
+                {avatarName}
+              </p>
+            </div>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-44" align="end">
+            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuItem onClick={onLogout}>
+              Log out
+              <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
     </header>
   );
 };
