@@ -1,6 +1,5 @@
 'use client';
 
-import authApi from '@/app/api/auth';
 import userApi from '@/app/api/user';
 import {
   DropdownMenu,
@@ -37,9 +36,7 @@ export const Navigation = () => {
 
   const avatarName = userData?.firstName.substring(0, 1);
 
-  const onLogout = async () => {
-    return await authApi.logout();
-  };
+  const onLogout = () => {};
 
   return (
     <header className="sticky top-0 flex h-10 w-full p-4">

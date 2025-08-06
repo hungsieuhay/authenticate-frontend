@@ -10,12 +10,12 @@ type TokenPayload = {
 };
 
 const authApi = {
-  async register(values: RegisterForm): Promise<RegisterForm> {
-    const data = await axiosClient.post<RegisterForm>('/auth/register', values);
+  async register(values: RegisterForm): Promise<TokenPayload> {
+    const data = await axiosClient.post<TokenPayload>('/auth/register', values);
     return data;
   },
-  async login(values: LoginForm): Promise<LoginForm> {
-    const data = await axiosClient.post<LoginForm>('/auth/login', values);
+  async login(values: LoginForm): Promise<TokenPayload> {
+    const data = await axiosClient.post<TokenPayload>('/auth/login', values);
     return data;
   },
   async refresh(): Promise<TokenPayload> {
