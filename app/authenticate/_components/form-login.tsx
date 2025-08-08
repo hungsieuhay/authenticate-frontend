@@ -1,6 +1,5 @@
 'use client';
 
-import authApi from '@/app/api/auth';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -11,6 +10,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { useAuth } from '@/contexts/auth-context';
 import dayjs from '@/lib/dayjs';
 import sleep from '@/lib/sleep';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -37,6 +37,7 @@ export const FormLogin = () => {
     },
   });
   const router = useRouter();
+  const { login } = useAuth();
 
   const onToastMessage = () =>
     toast('Login successful', {
@@ -45,7 +46,7 @@ export const FormLogin = () => {
 
   const onSubmit = async (values: loginForm) => {
     try {
-      await authApi.login(values);
+      await login(values);
       onToastMessage();
       await sleep(1000);
       router.push('/');

@@ -1,13 +1,5 @@
-import { LoginForm, RegisterForm } from '@/types';
+import { LoginForm, RegisterForm, TokenPayload } from '@/types';
 import axiosClient from './axios-client';
-
-type TokenPayload = {
-  message: string;
-  data: {
-    accessToken: string;
-  };
-  success: boolean;
-};
 
 const authApi = {
   async register(values: RegisterForm): Promise<TokenPayload> {

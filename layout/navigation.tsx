@@ -9,12 +9,14 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useAuth } from '@/contexts/auth-context';
 import { User } from '@/types';
 import { useEffect, useState } from 'react';
 
 export const Navigation = () => {
   const [userData, setUserData] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { logout } = useAuth();
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -36,7 +38,13 @@ export const Navigation = () => {
 
   const avatarName = userData?.firstName.substring(0, 1);
 
-  const onLogout = () => {};
+  const onLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <header className="sticky top-0 flex h-10 w-full p-4">

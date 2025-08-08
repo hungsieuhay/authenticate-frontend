@@ -3,12 +3,6 @@ import { NextRequest, NextResponse } from 'next/server';
 export function middleware(request: NextRequest) {
   // Get the access token from cookies
   const accessToken = request.cookies.get('accessToken')?.value;
-  console.log(
-    'Middleware - Path:',
-    request.nextUrl.pathname,
-    'AccessToken:',
-    accessToken ? 'Present' : 'Missing'
-  );
 
   // Define protected routes (routes that require authentication)
   const protectedPaths = [
