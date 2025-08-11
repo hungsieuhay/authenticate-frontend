@@ -14,7 +14,7 @@ export const setTokenHelpers = (
 };
 
 const baseAxiosClient = axios.create({
-  baseURL: 'http://localhost:8000/api',
+  baseURL: process.env.NEXT_PUBLIC_API || 'http://localhost:8000/api',
   withCredentials: true,
 });
 
