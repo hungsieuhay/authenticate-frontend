@@ -39,3 +39,24 @@ export interface TokenPayload {
   };
   success: boolean;
 }
+
+export interface Product {
+  id: string;
+  imageUrl: string;
+  slug: string;
+  name: string;
+  desc: string;
+  totalSell: number;
+  price: number;
+}
+
+export interface Meta {
+  totalItem: number;
+  totalPage: number;
+  currentPage: number;
+}
+
+export interface ProductResponse {
+  data: Array<Product>;
+  meta: Meta;
+}
